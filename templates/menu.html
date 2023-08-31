@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta letra="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="/static/estilos/style.css">
+    <link rel="stylesheet" href="/static/estilos/menu.css">
+    <link rel="stylesheet" href="/static/estilos/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+<body class = "container" >
+    <main class="cardmenu">
+        <!--Sonidos-->
+        <audio id="miAudio" ></audio>
+        <audio id="abecedario" loop></audio>
+        <audio id="fondo" loop src="../static/audio/audiofondo2.mp3"></audio>
+       <!--BotonesFlotantes-->
+         <div class="content-boton-sound">
+            <button  id="botonSonido" class="boton-sonido"><i class="material-icons" style="font-size:60px;color:rgb(235, 237, 238);text-shadow:2px 2px 4px #150202;">volume_off</i></button>                
+        </div>
+         <div class="menu_content"> 
+            <div class="content-boton">
+                <a id="inicioBoton" href="{{ url_for('index') }}" class="video-button "><i class="material-icons" style="font-size:60px;color:rgb(235, 237, 238);text-shadow:2px 2px 4px #150202;">home</i></a>                
+           </div>
+        <div class="cont-menu">      
+        <header >            
+            <div class="contenedor_ABC">
+                <div class="ABC_img">
+                    <img src="../static/access/letras/abecedario.gif" alt="" class="imgABC"/>
+                </div>
+                <div class="texto">
+                    <div class="header_m">
+                        <img src="../static/access/elementosV/logoSALSEC.png" alt="" class="header-img-m"/>
+                        <div class="text-header">
+                                <span>SALSEC</span>
+                        </div>
+                    </div>
+                    <div class="text-ABC">
+                        <h1>ABECEDARIO</h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="slide-container swiper">
+                <div  class="slide-content">
+                        <div class="card-wrapper swiper-wrapper" id="enlacesContainer">
+                            <!-- El contenido de las tarjetas será generado dinámicamente -->
+                        </div>
+                </div>
+                <div class="swiper-button-next "></div>
+                <div class="swiper-button-prev "></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div> 
+          </div>
+        
+    </main>
+</body>
+<!--Swipper-->
+<script src="../static/js/swiper-bundle.min.js"></script>
+<script src="../static/js/script-slider.js"></script>
+<script src="../static/js/audio.js"></script>
+<script>
+    
+</script><script>
+    // Arreglo de strings para los enlaces
+    var letras = ["A", "B", "C", "CH","D", "E", "F", "G", "H","I",
+    "K", "L", "M", "N", "O","P", "Q","R","S", "T","U", "V", "W", "X", "Y"];
+    
+    // Obtener el contenedor de los enlaces por su ID
+    var enlacesContainer = document.getElementById("enlacesContainer");
+    
+    // Crear los enlaces dinámicamente desde el arreglo de letras
+    for (var i = 0; i < letras.length; i++) {
+    var enlaceDiv = document.createElement("div");
+    enlaceDiv.className = "cardletras swiper-slide";
+
+    var enlaceContent = document.createElement("div");
+    enlaceContent.className = "card-content";
+    
+
+    var enlace = document.createElement("a");
+    enlace.id="inicioBoton";
+    enlace.href = "{{ url_for('letra') }}"; 
+    enlace.className = "letra";
+    enlace.textContent = letras[i];
+    
+
+    enlaceContent.appendChild(enlace);
+    enlaceDiv.appendChild(enlaceContent);
+    enlacesContainer.appendChild(enlaceDiv);
+    } 
+
+</script>
+
+<script src="../static/js/menu.js"></script>
+
+
+
+</html>

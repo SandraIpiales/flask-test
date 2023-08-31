@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>SALSEC</title>
+     <link rel="stylesheet" href="/static/estilos/style.css">
+     <link rel="stylesheet" href="/static/estilos/emergente.css">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+</head>
+
+<body class = "container" >
+     <main class="card">
+          <!--Boton Flotante-->
+          <div class="content-boton">
+               <a id="open" class="video-button ">
+                    <i class="material-icons " style="font-size:60px;color:rgb(235, 237, 238);
+                    text-shadow:2px 2px 4px #150202;">ondemand_video</i>
+               </a>                
+          </div>
+          <div class="content-boton-sound">
+               <button id="botonSonido" class="boton-sonido">
+                    <i class="material-icons" style="font-size:60px;color:rgb(235, 237, 238);
+                    text-shadow:2px 2px 4px #150202;">volume_off</i>
+               </button>                
+           </div>
+          <header>
+               <div class="header_inicio">   
+                     <!---------Enacbezado------------>
+                    <img src="../static/access/elementosV/logo_m.png" class="header-img"/>
+                    <div class="text-header">
+                         <span>SALSEC</span>
+                    </div>
+               </div>
+          </header>
+          <section>
+             <div class="flex-container">
+               <div class="flex-item-left">
+                 <div class="titulo">
+                         <p>Bienvenido al Sistema de Aprendizaje del 
+                         Abecedario en Lengua de Señas Ecuatoriana</p>
+                 </div>
+                 <a id="inicioBoton" href="{{ url_for('menu') }}">
+                    <input  type="button" class="botonprincipal txtboton boton-animado" value="INICIAR">
+                 </a>
+                 <div class="contenedor-img">  
+                    <img src="../static/access/elementosV/estaticbodyhola4.gif" 
+                    class="bienvenida-img"/> 
+                 </div>
+               </div>
+               <div class="flex-item-right">
+               </div>
+             </div>  
+          </section>          
+     </main>
+     <!--Tarjeta Emergente-->
+     <div id="modal_container" class="modal-container">
+          <div class="modal"> 
+            <div class="tituloVideo">
+               <h1 class="text_Tutorial">Video Tutorial</h1>
+               <a id="close" id="inicioBoton" class="video-button-close "><i class="material-icons" style="font-size:60px;color:rgb(2, 14, 18);text-shadow:2px 2px 4px #e2dede;">close</i></a> 
+           </div>
+            <div class="video">
+               <iframe class="videocontent" src="https://www.youtube.com/embed/hW_E8J-wC9c?si=-lzZZmiyKaRREedE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+     <!--Sonido-->
+     <audio id="miAudio" ></audio>
+     <audio id="fondo" src ="../static/audio/audioPlay.mp3" ></audio>
+</body>
+<script src="../static/js/audio.js"></script>
+<script src="../static/js/inicio.js"></script>
+</html>

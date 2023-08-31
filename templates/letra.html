@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+       <html lang="en">
+       <head>
+           <meta charset="UTF-8">
+           <meta http-equiv="X-UA-Compatible" content="IE=edge">
+           <link rel="stylesheet" href="/static/estilos/style.css">
+           <link rel="stylesheet" href="/static/estilos/letras.css">
+           <link rel="stylesheet" href="/static/estilos/navbar.css">
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+           <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            
+           <title>Aprendizaje</title>
+       </head>
+       <body class="container" >
+            <main class="cardl">
+                <div class="content-boton-sound">
+                    <button id="botonSonido" class="boton-sonido"><i class="material-icons" style="font-size:60px;color:rgb(235, 237, 238);text-shadow:2px 2px 4px #150202;">volume_off</i></button>                
+                </div>
+                <!--Encabezado-->
+               <header>
+                <div class="back">
+                    <div class="menu container2">    
+                        <input type="checkbox" id="menu"/>
+                        <label for="menu" class="l">
+                          <img src="/static/access/elementosV/menu.png" class="menu-icono" alt="">
+                        </label>
+                        <nav class="navbar">
+                            <ul>
+                                <li>
+                                 <a   href="{{ url_for('index') }}">
+                                     <i class="material-icons">home</i>
+                                     <div>Inicio</div>
+                                 </a></li>
+                                <li><a  href="{{ url_for('menu') }}">
+                                 <i class="material-icons"> more_horiz</i>
+                                 <div class="">Menu</div></a></li>
+                                
+                            </ul>                                  
+                        </nav>
+                    </div>
+                     <div class="header-n">
+                            <img src="../static/access/elementosV/logo_m.png" alt="" class="header-img-n"/>
+                            <div class="text-header">
+                                 <span>SALSEC</span>
+                            </div>
+                       </div>
+                </div>
+              </header>
+              
+               <!--Contenido Letra-->
+               <section id="letra" class="contenedorSigno">
+                <div class="flex-container-letra">
+                    <div class="flex-item-1">
+                        <div class="dis-letra">
+                         <div class="letraAprendizaje"><p id="Letra"></p></div>
+                        </div>
+                    </div>   
+                    <div class="flex-item-2">
+                        <img id="miImagen" class="letra-img"/>
+                    </div>
+                </div> 
+                <div class="flex-container-icon">
+                    <a id="inicioBoton" href="{{ url_for('monitoreo') }}" class="circular-button"><i class="material-icons" style="font-size:60px;color:rgb(2, 14, 18);text-shadow:2px 2px 4px #e2dede;">arrow_forward</i></a>  
+                </div> 
+               </div>
+               </section>
+               <!--Sonido-->
+              <audio id="miAudio"  ></audio><!--Botones-->
+              <audio id="letraAudio" loop></audio>
+              <audio id="fondo" src = "../static/audio/kids.mp3" loop></audio>
+            </main>           
+       </body>
+
+
+       <script src="../static/js/letra.js"></script>
+       </html>

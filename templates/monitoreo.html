@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/static/estilos/style.css">
+    <link rel="stylesheet" href="/static/estilos/navbar.css">
+    <link rel="stylesheet" href="/static/estilos/monitoreo.css">
+    <link rel="stylesheet" href="/static/estilos/emergente.css">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detectar Letra</title>
+</head>
+<body class = "container">
+    <main class="cardmonitoreo">
+      <!--Boton Flotante-->
+      
+   <div class="content-boton-sound">
+        <button id="botonSonido" class="boton-sonido"><i class="material-icons" style="font-size:60px;color:rgb(235, 237, 238);text-shadow:2px 2px 4px #150202;">volume_off</i></button>                
+    </div>
+        <header>
+            <div class="back">
+                <div class="menu container2">    
+                    <input type="checkbox" id="menu"/>
+                    <label for="menu" class="l">
+                      <img src="/static/access/elementosV/menu.png" class="menu-icono" alt="">
+                    </label>
+                    <nav class="navbar">
+                        <ul>
+                            <li>
+                             <a href="{{ url_for('index') }}">
+                                 <i class="material-icons">home</i>
+                                 <div>Inicio</div>
+                             </a></li>
+                            <li><a href="{{ url_for('menu') }}">
+                             <i class="material-icons"> more_horiz</i>
+                             <div class="">Menu</div></a></li>      
+                        </ul>                                  
+                    </nav>
+                    
+                </div>
+                <div class="header-n">
+                        <img src="../static/access/elementosV/logoSALSEC.png" alt="" class="header-img-n"/>
+                        <div class="text-header">
+                             <span>SALSEC</span>
+                        </div>
+                   </div>                        
+            </div>
+          </header>
+         
+
+        <section id="Video" >
+            <div class="banner" id="titulo"></div>
+            <div class="contentVideo">
+              <div class="detect">
+                <div class="ref">
+                  <img src="../static/access/letras/Img/letra" id="estatica" class="estatic-img"/>
+                  <img src="../static/access/letras/Img/letra" id="estaticaIzq" class="estatic-img"/>
+                </div>
+                <div class="card-video" >
+                    <img src="" class="video" id="videoFeed">
+                </div>
+              </div>
+              <div class="flex-container-icon">                .
+                <a  href="{{ url_for('letra') }}" class="circular-button"><i class="material-icons" style="font-size:60px;color:rgb(2, 14, 18);text-shadow:2px 2px 4px #e2dede;">arrow_back</i></a> 
+                <a id="inicioBoton"  href="{{ url_for('resultado') }}" class="circular-button"><i class="material-icons" style="font-size:60px;color:rgb(2, 14, 18);text-shadow:2px 2px 4px #e2dede;">arrow_forward</i></a>  
+              </div>
+            </div>
+            <!--Tarjeta Emergente-->
+            <div id="modal_container" class="modal-container">
+                <div class="modal-correcto"> 
+                  <div class="tituloVideo">
+                    <h1 class="text_Tutorial">Correcto</h1>
+                </div>
+                  <div class="siguiente">                    
+                    <i class="material-icons" style="font-size:100px;color:#7ade1c;text-shadow:2px 2px 4px #e1e2de;">check_circle</i> 
+                  </div>
+                </div>
+            </div>
+              
+               
+        </section>  
+                <!--Sonido-->
+                <audio id="miAudio" ></audio> <!--Boton-->
+                <audio id="letraAudio" loop></audio>
+                <audio id="fondo" src = "../static/audio/audiofondo2.mp3"></audio>
+       
+              
+    </main>
+</body>
+
+<script>
+
+    // Obtener la variable desde LocalStorage
+    var variable = localStorage.getItem('textoEnlace'); 
+    const miVariable = variable.toString();  
+    var imagen = document.getElementById("estatica");
+    var imagen2 = document.getElementById("estaticaIzq");
+    var textoTitulo = "Detectar Letra " + miVariable;
+
+    // Obtener el elemento donde deseas imprimir la variable
+    var resultadoDiv = document.getElementById("titulo");
+    // Imprimir la variable en el elemento HTML
+    resultadoDiv.textContent = textoTitulo;
+
+    // Construir la ruta completa y asignarla al atributo "src" de la imagen
+    imagen.src = "../static/access/letras/Img/letra" + miVariable + ".png";
+    imagen2.src = "../static/access/letras/Img/letraI" + miVariable + ".png";
+    console.log(variable)
+    function updateJsonSize() {
+          var xhr = new XMLHttpRequest();
+          xhr.open('GET', '/get_json_size_'+ variable, true);
+          xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Antigua"+ rec)  
+                var response = JSON.parse(xhr.responseText);
+                  console.log(response.json_size)
+                  if(rec!=0){
+                    if(rec<response.json_size){
+                      console.log("Hasta aqui")
+                      mostrarModal()
+                     
+                    }
+                  }
+                  rec=response.json_size
+
+              }
+          };
+          xhr.send();
+      }
+
+    // Función para obtener la URL actualizada
+    function obtenerURLActualizada() {
+      // Obtener el elemento img por su ID
+      var imgElement = document.getElementById("videoFeed");
+  
+      // Actualizar el atributo src con la URL actualizada
+      imgElement.src = "/video_feed_" + variable;
+    }
+  
+    // Llamar a la función para obtener la URL actualizada al cargar la página o cuando la variable cambie su valor
+    obtenerURLActualizada();
+  
+    // Si tienes una función que actualiza constantemente la variable miVariableJS, puedes llamar a obtenerURLActualizada() en esa función para actualizar el atributo src de la imagen en tiempo real.
+  </script>
+ <script src="../static/js/monitoreo.js"></script>
+</html>
